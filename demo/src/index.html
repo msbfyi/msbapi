@@ -1,0 +1,77 @@
+---
+layout: layout.html
+title: "Movie Tracker - Recent Watches"
+---
+
+{% if movies.error %}
+<div class="error-message">
+  <h2>⚠️ Unable to load movie data</h2>
+  <p>{{ movies.error }}</p>
+  <p>Make sure to set the <code>MOVIE_API_URL</code> environment variable with your Supabase function URL.</p>
+</div>
+{% else %}
+
+<div class="stats-summary">
+  <h2>Recent Movie Watches</h2>
+  <p class="movie-count">{{ movies.count }} total watches</p>
+</div>
+
+{% if movies.watches.length > 0 %}
+<div class="movies-grid">
+  {% for watch in movies.watches %}
+  <article class="movie-card">
+    <div class="movie-poster">
+      <img
+        src="{{ watch.movies.poster_url }}"
+        alt="{{ watch.movies.title }} ({{ watch.movies.year }}) poster"
+        loading="lazy"
+        onerror="this.src='https://via.placeholder.com/300x450/cccccc/666666?text={{ watch.movies.title | urlencode }}'"
+      >
+    </div>
+
+    <div class="movie-info">
+      <h3 class="movie-title">{{ watch.movies.title }}</h3>
+      <p class="movie-year">{{ watch.movies.year }}</p>
+
+      {% if watch.movies.director %}
+      <p class="movie-director">Directed by {{ watch.movies.director }}</p>
+      {% endif %}
+
+      <div class="watch-details">
+        <p class="watch-date">
+          <strong>Watched:</strong> {{ watch.watched_at | dateFormat }}
+        </p>
+
+        {% if watch.personal_rating %}
+        <p class="movie-rating">
+          <strong>Rating:</strong>
+          <span class="stars">{{ watch.personal_rating | starRating }}</span>
+          <span class="rating-number">({{ watch.personal_rating }}/5)</span>
+        </p>
+        {% endif %}
+
+        {% if watch.review_text %}
+        <div class="movie-review">
+          <strong>Review:</strong>
+          <p class="review-text">{{ watch.review_text }}</p>
+        </div>
+        {% endif %}
+
+        {% if watch.source_url %}
+        <p class="source-link">
+          <a href="{{ watch.source_url }}" target="_blank" rel="noopener">View on source →</a>
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <h2>No movies watched yet</h2>
+  <p>Start tracking your movie watches and they'll appear here!</p>
+</div>
+{% endif %}
+
+{% endif %}

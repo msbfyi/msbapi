@@ -1,0 +1,14 @@
+{
+  "name": "movie-demo",
+  "version": "1.0.0",
+  "description": "11ty demo app for movie tracking API",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.0",
+    "node-fetch": "^2.6.12",
+    "dotenv": "^16.0.0"
+  }
+}

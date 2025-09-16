@@ -1,0 +1,16 @@
+{
+  "name": "msb-api",
+  "version": "1.0.0",
+  "description": "Movie tracking API built with Supabase Edge Functions",
+  "scripts": {
+    "tmdb-test": "node docs/movies/tmdb-test.js",
+    "movie-backfill": "node docs/movies/movie-backfill.js",
+    "tmdb-enricher": "node docs/movies/tmdb-enricher.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
