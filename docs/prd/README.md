@@ -39,9 +39,10 @@ All PRDs should follow this standard structure:
 
 ## Current PRDs
 
-| Feature | Version | Status | Description |
-|---------|---------|--------|-------------|
-| [TV Tracking](tv-tracking-v0.2.0.md) | v0.2.0 | Draft | Add comprehensive TV show tracking with episode-level granularity |
+| Feature | Version | Status | Description | GitHub Issue |
+|---------|---------|--------|-------------|--------------|
+| [TV Tracking](tv-tracking-v0.2.0.md) | v0.2.0 | Draft | Add comprehensive TV show tracking with episode-level granularity | [#2](https://github.com/msbfyi/msbapi/issues/2) |
+| [GitHub Status Integration](github-status-integration.md) | v1.0.0 | Draft | Cross-platform status synchronization for GitHub and Slack | [#3](https://github.com/msbfyi/msbapi/issues/3) |
 
 ## Templates
 
