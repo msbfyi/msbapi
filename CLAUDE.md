@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a movie tracking API built with Supabase Edge Functions. The system processes movie activity from RSS feeds (Letterboxd, Trakt.tv) via EchoFeed webhooks and stores movie watches, ratings, and reviews in a structured database.
 
+This project follows open source best practices including semantic versioning, maintaining a changelog, and clear documentation. We welcome contributions and strive to maintain code quality and community standards.
+
 ## Architecture
 
 ### Core Components
@@ -103,3 +105,23 @@ The function expects webhooks with `item` containing:
 - **Supabase**: Database and Edge Functions runtime (Deno)
 - **EchoFeed**: RSS-to-webhook service for feed monitoring
 - **Trakt.tv API**: Optional for data backfill (requires API key)
+
+## Open Source Best Practices
+
+This project follows open source development standards:
+
+### Versioning
+- Uses [Semantic Versioning](https://semver.org/) (SemVer) for releases
+- Version format: MAJOR.MINOR.PATCH
+- Breaking changes increment MAJOR, new features increment MINOR, bug fixes increment PATCH
+
+### Documentation
+- Maintains a [CHANGELOG.md](./CHANGELOG.md) following [Keep a Changelog](https://keepachangelog.com/) format
+- All notable changes are documented with clear categories (Added, Changed, Fixed, etc.)
+- Each release is properly tagged and documented
+
+### Code Quality
+- Clear, self-documenting code with minimal comments
+- Consistent naming conventions and project structure
+- Thorough testing before releases
+- Security best practices (no secrets in code)
