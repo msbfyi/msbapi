@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-09-15
 
 ### Added
-- Initial release of Movie Tracking API
+- Initial release of Personal API
 - Supabase Edge Function for processing movie activity
 - Support for Letterboxd RSS feed integration via EchoFeed webhooks
 - Support for Trakt.tv RSS feed integration

@@ -1,6 +1,6 @@
-# MSB Movie API
+# MSB Personal API
 
-A movie tracking API built with Supabase Edge Functions that processes RSS feeds from Letterboxd and Trakt.tv to automatically track movie watches, ratings, and reviews.
+A Personal API built with Supabase Edge Functions that processes RSS feeds from Letterboxd and Trakt.tv to automatically track movie watches, ratings, and reviews.
 
 ## Features
 
@@ -8,7 +8,7 @@ A movie tracking API built with Supabase Edge Functions that processes RSS feeds
 - 🖼️ **TMDB Integration** - Automatic movie poster and metadata enrichment
 - 📊 **Rich API** - RESTful endpoints for movies, watches, statistics, and search
 - 🔄 **Data Backfill** - Import existing Trakt.tv watch history
-- 🌐 **Demo Website** - 11ty-powered movie tracking website
+- 🌐 **Demo Website** - 11ty-powered personal movie website
 
 ## Quick Start
 
@@ -98,7 +98,7 @@ npm install
 npm start
 ```
 
-Visit `http://localhost:8080` to see your movie tracking website.
+Visit `http://localhost:8080` to see your personal movie website.
 
 ## Required Services
 

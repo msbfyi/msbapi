@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a movie tracking API built with Supabase Edge Functions. The system processes movie activity from RSS feeds (Letterboxd, Trakt.tv) via EchoFeed webhooks and stores movie watches, ratings, and reviews in a structured database.
+This is a Personal API built with Supabase Edge Functions. The system processes movie activity from RSS feeds (Letterboxd, Trakt.tv) via EchoFeed webhooks and stores movie watches, ratings, and reviews in a structured database.
 
 This project follows open source best practices including semantic versioning, maintaining a changelog, and clear documentation. We welcome contributions and strive to maintain code quality and community standards.
 
