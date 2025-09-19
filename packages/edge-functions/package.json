@@ -1,0 +1,20 @@
+{
+  "name": "@msb/edge-functions",
+  "version": "1.0.0",
+  "description": "Supabase Edge Functions for MSB API",
+  "private": true,
+  "scripts": {
+    "dev": "supabase functions serve",
+    "deploy": "supabase functions deploy --no-verify-jwt",
+    "logs": "supabase functions logs",
+    "test": "deno test --allow-all",
+    "lint": "deno lint",
+    "typecheck": "deno check **/*.ts"
+  },
+  "devDependencies": {
+    "@supabase/functions-js": "^2.0.0"
+  },
+  "engines": {
+    "deno": ">=1.40.0"
+  }
+}

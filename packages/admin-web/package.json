@@ -1,0 +1,43 @@
+{
+  "name": "@msb/admin-web",
+  "version": "1.0.0",
+  "description": "Admin website for MSB API",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .next out dist",
+    "deploy": "npm run build && npm run export",
+    "export": "next export"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "@msb/api-client": "*",
+    "@msb/shared": "*",
+    "@supabase/supabase-js": "^2.0.0",
+    "tailwindcss": "^3.0.0",
+    "@headlessui/react": "^1.7.0",
+    "@heroicons/react": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0",
+    "vitest": "^1.0.0",
+    "autoprefixer": "^10.0.0",
+    "postcss": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
