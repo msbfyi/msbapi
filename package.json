@@ -1,16 +1,71 @@
 {
-  "name": "msb-api",
-  "version": "0.1.0",
-  "description": "Personal API built with Supabase Edge Functions",
+  "name": "@msb/api-monorepo",
+  "version": "1.0.0",
+  "description": "Personal API built with Supabase Edge Functions - Monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "tmdb-test": "node docs/movies/tmdb-test.js",
-    "movie-backfill": "node docs/movies/movie-backfill.js",
-    "tmdb-enricher": "node docs/movies/tmdb-enricher.js"
+    "setup": "node scripts/setup.js",
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules",
+    "db:migrate": "cd packages/edge-functions && supabase migration up",
+    "db:reset": "cd packages/edge-functions && supabase db reset",
+    "db:docs": "node scripts/generate-db-docs.js",
+    "deploy:functions": "cd packages/edge-functions && supabase functions deploy --no-verify-jwt",
+    "deploy:admin": "npm run deploy -w packages/admin-web",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,json,md}\"",
+    "tmdb-test": "node packages/shared/scripts/tmdb-test.js",
+    "movie-backfill": "node packages/shared/scripts/movie-backfill.js",
+    "tmdb-enricher": "node packages/shared/scripts/tmdb-enricher.js",
+    "workspace:shared": "npm run dev -w packages/shared",
+    "workspace:api-client": "npm run dev -w packages/api-client",
+    "workspace:admin-web": "npm run dev -w packages/admin-web",
+    "workspace:edge-functions": "npm run dev -w packages/edge-functions",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.0"
   },
   "dependencies": {
     "dotenv": "^16.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/msb-api.git"
+  },
+  "keywords": [
+    "personal-api",
+    "supabase",
+    "edge-functions",
+    "movie-tracking",
+    "monorepo"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }

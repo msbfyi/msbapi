@@ -1,10 +1,12 @@
 # Movie Tracker Demo
 
-An 11ty-based demo application that displays movies in order of last viewed, featuring movie posters and watch details.
+An 11ty-based demo application that displays movies in order of last viewed,
+featuring movie posters and watch details.
 
 ## Features
 
-- **Recent Watches**: Movies displayed in chronological order (most recent first)
+- **Recent Watches**: Movies displayed in chronological order (most recent
+  first)
 - **Movie Posters**: Automatic poster loading with fallback placeholders
 - **Watch Details**: Ratings, reviews, and watch dates
 - **Responsive Design**: Works on desktop and mobile devices
@@ -65,14 +67,19 @@ demo/
 
 ## How It Works
 
-1. **Data Fetching**: The `src/_data/movies.js` file runs at build time to fetch recent movie watches from your API
-2. **Template Rendering**: 11ty processes the `index.html` template with the movie data
-3. **Poster URLs**: The API client generates poster URLs using TMDB IDs when available, with fallback placeholders
-4. **Static Generation**: 11ty builds a static site that can be deployed anywhere
+1. **Data Fetching**: The `src/_data/movies.js` file runs at build time to fetch
+   recent movie watches from your API
+2. **Template Rendering**: 11ty processes the `index.html` template with the
+   movie data
+3. **Poster URLs**: The API client generates poster URLs using TMDB IDs when
+   available, with fallback placeholders
+4. **Static Generation**: 11ty builds a static site that can be deployed
+   anywhere
 
 ## API Integration
 
-The demo uses the `getRecentWatches()` method to fetch movies ordered by watch date. The API response should include:
+The demo uses the `getRecentWatches()` method to fetch movies ordered by watch
+date. The API response should include:
 
 ```javascript
 {
@@ -125,9 +132,11 @@ Update `src/index.html` to:
 
 ## Deployment
 
-The demo generates static files that can be deployed to any static hosting service:
+The demo generates static files that can be deployed to any static hosting
+service:
 
-- **Netlify**: Connect your repo and set the `MOVIE_API_URL` environment variable
+- **Netlify**: Connect your repo and set the `MOVIE_API_URL` environment
+  variable
 - **Vercel**: Similar to Netlify with environment variables
 - **GitHub Pages**: Build locally and push to `gh-pages` branch
 - **Any CDN**: Upload the `_site` folder after running `npm run build`
@@ -170,4 +179,5 @@ Then start the development server:
 npm start
 ```
 
-The demo will fetch live data from your movie API and display it in a beautiful, responsive grid layout.
+The demo will fetch live data from your movie API and display it in a beautiful,
+responsive grid layout.

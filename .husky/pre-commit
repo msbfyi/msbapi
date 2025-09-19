@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged for automated code quality checks
+npx lint-staged
+
+# TODO: Re-enable when Deno is installed
+# npm run typecheck
+
+echo "✅ Pre-commit checks passed!"
