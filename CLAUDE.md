@@ -20,7 +20,7 @@ contributions and strive to maintain code quality and community standards.
 msb-api/
 ├── packages/
 │   ├── edge-functions/      # Supabase Edge Functions (Deno/TypeScript)
-│   ├── admin-web/          # Admin website (Next.js/React)
+│   ├── admin-app/          # Admin dashboard (Lit/Web Components)
 │   ├── shared/             # Shared utilities and types (TypeScript)
 │   └── api-client/         # JavaScript client library (TypeScript)
 ├── docs/                   # Consolidated documentation
@@ -43,10 +43,12 @@ msb-api/
   - Provides REST endpoints for movie data
   - Supports multiple RSS sources (Letterboxd, Trakt.tv, generic)
 
-- **Admin Website** (`packages/admin-web/`): Next.js admin interface
+- **Admin Dashboard** (`packages/admin-app/`): Modern web components interface
+  - Built with Lit 3.0, Shoelace UI, and @preact/signals
+  - Supabase authentication integration
+  - Real-time dashboard with statistics
   - Movie database management
   - Analytics and statistics
-  - TMDB enrichment tools
   - User-friendly movie tracking interface
 
 - **API Client** (`packages/api-client/`): JavaScript/TypeScript client library
@@ -94,12 +96,12 @@ npm run dev
 ```bash
 # Work on specific packages
 npm run workspace:edge-functions    # Supabase functions
-npm run workspace:admin-web        # Admin website
+npm run workspace:admin-app        # Admin dashboard
 npm run workspace:shared          # Shared utilities
 npm run workspace:api-client      # API client
 
 # Or use workspace flags
-npm run dev -w packages/admin-web
+npm run dev -w packages/admin-app
 npm run build -w packages/api-client
 ```
 
@@ -348,7 +350,7 @@ When working with this codebase, please follow these guidelines:
 ### Deployment
 
 - Edge functions deploy from `packages/edge-functions/`
-- Admin website deploys from `packages/admin-web/`
+- Admin dashboard builds from `packages/admin-app/`
 - API client can be published to npm from `packages/api-client/`
 - Use the provided GitHub Actions workflows
 
