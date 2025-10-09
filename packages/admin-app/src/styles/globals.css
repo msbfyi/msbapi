@@ -1,0 +1,46 @@
+/* Reset and base styles for wa-page */
+html, body {
+  min-height: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* WebAwesome theme variables */
+:root {
+  --wa-color-primary-50: #eff6ff;
+  --wa-color-primary-100: #dbeafe;
+  --wa-color-primary-500: #3b82f6;
+  --wa-color-primary-600: #2563eb;
+  --wa-color-primary-700: #1d4ed8;
+}
+
+/* Page layout styles */
+wa-page {
+  --header-height: 64px;
+  --menu-width: 250px;
+}
+
+wa-page[slot="header"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

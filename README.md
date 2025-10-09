@@ -14,7 +14,7 @@ complete movie tracking system.
 msb-api/
 ├── packages/
 │   ├── edge-functions/     # Supabase Edge Functions (Deno/TypeScript)
-│   ├── admin-web/          # Next.js Admin Interface
+│   ├── admin-app/          # Admin Dashboard (Lit/Web Components)
 │   ├── shared/             # Shared utilities and types (TypeScript)
 │   └── api-client/         # JavaScript/TypeScript SDK
 ├── docs/                   # Consolidated documentation
@@ -34,7 +34,8 @@ msb-api/
 - 📊 **Rich API** - RESTful endpoints for movies, watches, statistics, and
   search
 - 🔄 **Data Backfill** - Import existing Trakt.tv watch history
-- 🌐 **Admin Interface** - Next.js dashboard for database management
+- 🌐 **Admin Interface** - Modern web components dashboard for database
+  management
 - 📦 **TypeScript SDK** - Type-safe API client for building applications
 - 🤖 **CI/CD Pipeline** - Automated testing, deployment, and code quality
 - 📚 **Database Management** - Schema documentation and migration tracking
@@ -115,9 +116,9 @@ npm run db:migrate
 npm run deploy:functions
 
 # Start admin interface locally
-npm run workspace:admin-web
+npm run workspace:admin-app
 
-# Or deploy to production (configure Vercel first)
+# Or build for production
 npm run deploy:admin
 ```
 
@@ -131,12 +132,12 @@ npm run dev
 
 # Work on specific packages
 npm run workspace:edge-functions    # Supabase functions
-npm run workspace:admin-web        # Admin website
+npm run workspace:admin-app        # Admin dashboard
 npm run workspace:shared          # Shared utilities
 npm run workspace:api-client      # API client
 
 # Alternative syntax
-npm run dev -w packages/admin-web
+npm run dev -w packages/admin-app
 npm run build -w packages/api-client
 ```
 
@@ -182,12 +183,13 @@ npm run tmdb-enricher      # Enrich existing movies
 - RESTful API endpoints for data access
 - Automatic database schema creation
 
-### Admin Website (`packages/admin-web/`)
+### Admin Dashboard (`packages/admin-app/`)
 
-- **Next.js 14** with TypeScript and Tailwind CSS
-- Real-time dashboard with movie statistics
+- **Lit 3.0** with Web Components and Shoelace UI
+- Signal-based reactive state management
+- Supabase authentication integration
+- Real-time dashboard with statistics
 - Database management interface
-- TMDB enrichment tools
 - Responsive design with modern UI components
 
 ### API Client (`packages/api-client/`)
@@ -291,10 +293,9 @@ NPM_TOKEN=your-npm-token
 cd packages/edge-functions
 supabase functions deploy --no-verify-jwt
 
-# Deploy admin website
-cd packages/admin-web
+# Build admin dashboard
+cd packages/admin-app
 npm run build
-npm run deploy
 
 # Publish API client
 cd packages/api-client
@@ -308,7 +309,7 @@ npm publish --access public
 
 - [Edge Functions](packages/edge-functions/README.md) - API endpoints and
   deployment
-- [Admin Website](packages/admin-web/README.md) - UI components and features
+- [Admin Dashboard](packages/admin-app/README.md) - UI components and features
 - [API Client](packages/api-client/README.md) - SDK usage and examples
 - [Shared Package](packages/shared/README.md) - Types and utilities
 
@@ -319,6 +320,8 @@ npm publish --access public
   management
 - [API Reference](docs/api/README.md) - Endpoint documentation
 - [Deployment Guide](docs/deployment/README.md) - Platform-specific guides
+- [Supabase MCP Setup](docs/deployment/supabase-mcp-setup.md) - AI assistant
+  integration
 
 ## 🔧 Configuration
 

@@ -18,7 +18,7 @@
     "db:reset": "cd packages/edge-functions && supabase db reset",
     "db:docs": "node scripts/generate-db-docs.js",
     "deploy:functions": "cd packages/edge-functions && supabase functions deploy --no-verify-jwt",
-    "deploy:admin": "npm run deploy -w packages/admin-web",
+    "deploy:admin": "npm run build -w packages/admin-app",
     "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,ts,tsx,json,md}\"",
     "tmdb-test": "node packages/shared/scripts/tmdb-test.js",
@@ -26,7 +26,7 @@
     "tmdb-enricher": "node packages/shared/scripts/tmdb-enricher.js",
     "workspace:shared": "npm run dev -w packages/shared",
     "workspace:api-client": "npm run dev -w packages/api-client",
-    "workspace:admin-web": "npm run dev -w packages/admin-web",
+    "workspace:admin-app": "npm run dev -w packages/admin-app",
     "workspace:edge-functions": "npm run dev -w packages/edge-functions",
     "prepare": "husky install"
   },

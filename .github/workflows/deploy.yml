@@ -36,9 +36,9 @@ jobs:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
           SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
 
-  # TODO: Enable when admin website deployment is fully configured
-  # deploy-admin-web:
-  #   name: Deploy Admin Website
+  # TODO: Enable when admin dashboard deployment is fully configured
+  # deploy-admin-app:
+  #   name: Deploy Admin Dashboard
   #   runs-on: ubuntu-latest
   #   if: github.ref == 'refs/heads/main'
   #   environment: production
@@ -55,19 +55,22 @@ jobs:
   #     - name: Install dependencies
   #       run: npm ci
 
-  #     - name: Build admin website
-  #       run: npm run build -w packages/admin-web
+  #     - name: Build admin dashboard
+  #       run: npm run build -w packages/admin-app
   #       env:
-  #         NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-  #         NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+  #         VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+  #         VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-  #     - name: Deploy to Vercel
-  #       uses: amondnet/vercel-action@v25
-  #       with:
-  #         vercel-token: ${{ secrets.VERCEL_TOKEN }}
-  #         github-token: ${{ secrets.GITHUB_TOKEN }}
-  #         vercel-args: '--prod'
-  #         working-directory: packages/admin-web
+  #     - name: Deploy to hosting provider
+  #       # TODO: Configure deployment target (Vercel, Netlify, etc.)
+  #       run: echo "Configure deployment target"
+  #       # Example for Vercel:
+  #       # uses: amondnet/vercel-action@v25
+  #       # with:
+  #       #   vercel-token: ${{ secrets.VERCEL_TOKEN }}
+  #       #   github-token: ${{ secrets.GITHUB_TOKEN }}
+  #       #   vercel-args: '--prod'
+  #       #   working-directory: packages/admin-app
 
   # TODO: Enable when ready to publish API client publicly
   # publish-packages:
