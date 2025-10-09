@@ -24,9 +24,17 @@
       "@/components/*": ["./src/components/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/types/*": ["./src/types/*"]
-    }
+    },
+    "noEmit": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
-  "references": [{ "path": "../shared" }, { "path": "../api-client" }]
+  "references": [
+    {
+      "path": "../shared"
+    },
+    {
+      "path": "../api-client"
+    }
+  ]
 }

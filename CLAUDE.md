@@ -198,6 +198,35 @@ The function expects webhooks with `item` containing:
 - **Next.js**: Admin website framework
 - **GitHub Actions**: CI/CD pipeline
 
+## AI Assistant Integration
+
+### Supabase Model Context Protocol (MCP)
+
+This project supports the Supabase Model Context Protocol (MCP), which allows AI
+assistants like Claude to interact directly with the Supabase database. See
+[docs/deployment/supabase-mcp-setup.md](docs/deployment/supabase-mcp-setup.md)
+for complete setup instructions.
+
+**Important Security Notes:**
+
+- Exercise caution when connecting to production environments
+- Use read-only mode for exploratory queries
+- Always review AI-generated queries before execution
+- For production schema changes, ensure proper backup and review procedures
+- Consider using database branches for testing schema modifications
+- Limit feature group access to minimum required scope
+
+**Recommended Usage:**
+
+- Exploring movie data and generating reports
+- Understanding database schema and relationships
+- Developing and testing SQL queries
+- Analyzing watch patterns and statistics
+- Assisting with database schema design and migrations (with proper review)
+
+For detailed setup instructions, security guidelines, and best practices, refer
+to the [MCP Setup Guide](docs/deployment/supabase-mcp-setup.md).
+
 ## Monorepo Best Practices
 
 ### Workspace Management

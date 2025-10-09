@@ -27,6 +27,7 @@
     "workspace:shared": "npm run dev -w packages/shared",
     "workspace:api-client": "npm run dev -w packages/api-client",
     "workspace:admin-web": "npm run dev -w packages/admin-web",
+    "workspace:admin-app": "npm run dev -w packages/admin-app",
     "workspace:edge-functions": "npm run dev -w packages/edge-functions",
     "prepare": "husky install"
   },

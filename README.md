@@ -319,6 +319,8 @@ npm publish --access public
   management
 - [API Reference](docs/api/README.md) - Endpoint documentation
 - [Deployment Guide](docs/deployment/README.md) - Platform-specific guides
+- [Supabase MCP Setup](docs/deployment/supabase-mcp-setup.md) - AI assistant
+  integration
 
 ## 🔧 Configuration
 
