@@ -33,9 +33,5 @@
     "esModuleInterop": true
   },
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"],
-  "references": [
-    { "path": "./packages/shared" },
-    { "path": "./packages/api-client" },
-    { "path": "./packages/admin-web" }
-  ]
+  "references": [{ "path": "./packages/shared" }, { "path": "./packages/api-client" }]
 }

@@ -6,7 +6,8 @@ A modern admin dashboard built with web standards.
 
 - **Lit** - Web Components framework
 - **@preact/signals-core** - Reactive state management
-- **Shoelace** - UI component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Shoelace** - UI component library (for form inputs and buttons)
 - **Supabase** - Authentication and backend
 - **Vite** - Build tool and dev server
 
@@ -76,8 +77,9 @@ The app will be available at [http://localhost:3001](http://localhost:3001)
 - ✅ Basic dashboard with mock data
 - ✅ Responsive layout with sidebar navigation
 - ✅ Signal-based state management
-- ✅ Modern UI with Shoelace components
+- ✅ Modern UI with Tailwind CSS and Shoelace components
 - ✅ Loading states and error handling
+- ✅ Utility-first styling with custom theme
 
 ## Project Structure
 
@@ -88,16 +90,18 @@ packages/admin-app/
 ├── src/
 │   ├── components/
 │   │   ├── base-component.js    # Base component with signal support
-│   │   ├── app-shell.js         # Main app layout
-│   │   ├── login-form.js        # Login interface
-│   │   └── dashboard-page.js    # Dashboard content
+│   │   ├── app-shell.js         # Main app layout (Tailwind)
+│   │   ├── login-form.js        # Login interface (Tailwind)
+│   │   └── dashboard-page.js    # Dashboard content (Tailwind)
 │   ├── lib/
 │   │   └── supabase.js          # Supabase client
 │   ├── store/
 │   │   └── auth-signals.js      # Auth state management
 │   ├── styles/
-│   │   └── globals.css          # Global styles
+│   │   └── globals.css          # Global styles with Tailwind directives
 │   └── main.js                  # App entry point
+├── tailwind.config.js           # Tailwind CSS configuration
+├── postcss.config.js            # PostCSS configuration
 ├── package.json
 ├── vite.config.js
 └── README.md
@@ -134,6 +138,38 @@ All components extend `BaseComponent` which provides:
 - Automatic signal subscription management
 - Cleanup on component disconnect
 - Standard Lit element lifecycle
+
+**Important**: Components use Light DOM (not Shadow DOM) to enable Tailwind CSS
+styling. This is achieved by overriding `createRenderRoot()` to return `this`
+instead of creating a shadow root.
+
+### Styling with Tailwind CSS
+
+This project uses **Tailwind CSS v3** for utility-first styling:
+
+- **Custom Theme**: Configured in `tailwind.config.js` with brand colors
+  matching the original design
+  - Purple gradient: `bg-gradient-brand` (#667eea to #764ba2)
+  - Custom color palettes: `primary`, `success`, `warning`, `danger`, `info`
+  - Brand colors: `brand-purple`, `brand-indigo`
+- **Responsive Design**: Built-in breakpoints (`sm:`, `md:`, `lg:`, etc.)
+- **Shoelace Integration**: Tailwind handles layout/utilities, Shoelace provides
+  accessible form components
+- **Production Optimization**: Tailwind automatically purges unused styles in
+  production builds
+
+**Example usage**:
+
+```html
+<!-- Gradient background -->
+<div class="bg-gradient-brand">
+  <!-- Responsive grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Custom theme colors -->
+    <div class="bg-white border-l-4 border-success-500 p-6"></div>
+  </div>
+</div>
+```
 
 ### State Management
 
