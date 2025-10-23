@@ -10,6 +10,7 @@ import './styles/globals.css'
 
 // Import all components
 import './components/base-component.js'
+import './components/base-page.js'
 import './components/login-form.js'
 import './components/dashboard-page.js'
 import './components/app-shell.js'

@@ -1,5 +1,5 @@
 import { html } from 'lit'
-import { BaseComponent } from './base-component.js'
+import { BasePage } from './base-page.js'
 import { authState, authService } from '../store/auth-signals.js'
 
 // Import Shoelace components
@@ -7,12 +7,7 @@ import '@shoelace-style/shoelace/dist/components/button/button.js'
 import '@shoelace-style/shoelace/dist/components/input/input.js'
 import '@shoelace-style/shoelace/dist/components/icon/icon.js'
 
-export class LoginForm extends BaseComponent {
-  // Remove Shadow DOM to enable Tailwind styling
-  createRenderRoot() {
-    return this
-  }
-
+export class LoginForm extends BasePage {
   setupSubscriptions() {
     this.subscribe(authState)
   }

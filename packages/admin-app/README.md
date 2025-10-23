@@ -133,15 +133,28 @@ packages/admin-app/
 
 ### Component Architecture
 
-All components extend `BaseComponent` which provides:
+This project uses a **hybrid Shadow DOM + Light DOM architecture** for optimal
+encapsulation and styling flexibility:
+
+**BaseComponent** (Shadow DOM - Default)
+
+- For reusable UI components that need encapsulation
+- Extends `LitElement` with Shadow DOM enabled
+- Can use Tailwind via imported stylesheet (`tailwindStylesheet`)
+- Example: `dashboard-page`, custom widgets, cards
+
+**BasePage** (Light DOM - For Tailwind)
+
+- For page-level and layout components
+- Disables Shadow DOM to enable full Tailwind CSS support
+- Use for: routes, layouts, pages
+- Example: `app-shell`, `login-form`
+
+Both base classes provide:
 
 - Automatic signal subscription management
 - Cleanup on component disconnect
 - Standard Lit element lifecycle
-
-**Important**: Components use Light DOM (not Shadow DOM) to enable Tailwind CSS
-styling. This is achieved by overriding `createRenderRoot()` to return `this`
-instead of creating a shadow root.
 
 ### Styling with Tailwind CSS
 
@@ -160,15 +173,50 @@ This project uses **Tailwind CSS v3** for utility-first styling:
 
 **Example usage**:
 
-```html
-<!-- Gradient background -->
-<div class="bg-gradient-brand">
-  <!-- Responsive grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <!-- Custom theme colors -->
-    <div class="bg-white border-l-4 border-success-500 p-6"></div>
-  </div>
-</div>
+Light DOM (BasePage):
+
+```js
+import { html } from 'lit'
+import { BasePage } from './base-page.js'
+
+export class MyPage extends BasePage {
+  render() {
+    return html`
+      <div class="bg-gradient-brand p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white border-l-4 border-success-500 p-6">Card</div>
+        </div>
+      </div>
+    `
+  }
+}
+```
+
+Shadow DOM (BaseComponent):
+
+```js
+import { html, css } from 'lit'
+import { BaseComponent } from './base-component.js'
+import { tailwindStylesheet } from '../styles/tailwind-shadow.js'
+
+export class MyComponent extends BaseComponent {
+  static styles = [
+    tailwindStylesheet,
+    css`
+      :host {
+        display: block;
+      }
+    `,
+  ]
+
+  render() {
+    return html`
+      <div class="bg-white p-6 rounded-lg shadow-card">
+        <!-- Tailwind classes work in Shadow DOM too -->
+      </div>
+    `
+  }
+}
 ```
 
 ### State Management

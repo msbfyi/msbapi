@@ -1,13 +1,18 @@
-import { html } from 'lit'
+import { html, css } from 'lit'
 import { BaseComponent } from './base-component.js'
 import { authState } from '../store/auth-signals.js'
 import '@shoelace-style/shoelace/dist/components/icon/icon.js'
+import { tailwindStylesheet } from '../styles/tailwind-shadow.js'
 
 export class DashboardPage extends BaseComponent {
-  // Remove Shadow DOM to enable Tailwind styling
-  createRenderRoot() {
-    return this
-  }
+  static styles = [
+    tailwindStylesheet,
+    css`
+      :host {
+        display: block;
+      }
+    `,
+  ]
 
   setupSubscriptions() {
     this.subscribe(authState)
