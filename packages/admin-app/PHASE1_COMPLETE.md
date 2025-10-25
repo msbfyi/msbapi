@@ -39,7 +39,7 @@ packages/admin-app/
 
 - **Lit 3.0** - Web Components framework
 - **@preact/signals-core 1.5** - Reactive state management
-- **Shoelace 2.20** - UI component library (replaced WebAwesome)
+- **Web Awesome 1.0** - UI component library with Font Awesome icons
 - **Supabase 2.38** - Authentication and backend
 - **Vite 5.0** - Build tool and dev server
 
@@ -150,13 +150,13 @@ isLoading = computed(() => authState.value.loading)
 
 ### UI Components
 
-Using Shoelace components:
+Using Web Awesome components:
 
-- `<sl-button>` - Buttons with variants
-- `<sl-input>` - Form inputs
-- `<sl-icon>` - Bootstrap Icons integration
+- `<wa-button>` - Buttons with variants
+- `<wa-input>` - Form inputs
+- `<wa-icon>` - Font Awesome icons integration
 
-Icons loaded from CDN via `setBasePath()` in main.js.
+Icons and components loaded from CDN via script tag in index.html.
 
 ### Authentication Flow
 
@@ -243,11 +243,13 @@ Total: ~248 kB (65 kB gzipped)
 {
   "dependencies": {
     "@preact/signals-core": "^1.5.0",
-    "@shoelace-style/shoelace": "^2.20.1",
     "@supabase/supabase-js": "^2.38.0",
     "lit": "^3.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18",
     "vite": "^5.0.0"
   }
 }

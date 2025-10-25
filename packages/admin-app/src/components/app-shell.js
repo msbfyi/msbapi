@@ -1,154 +1,8 @@
-import { html, css } from 'lit'
-import { BaseComponent } from './base-component.js'
+import { html } from 'lit'
+import { BasePage } from './base-page.js'
 import { authState, isAuthenticated, authService } from '../store/auth-signals.js'
 
-// Import Shoelace components
-import '@shoelace-style/shoelace/dist/components/button/button.js'
-import '@shoelace-style/shoelace/dist/components/icon/icon.js'
-
-export class AppShell extends BaseComponent {
-  static styles = css`
-    :host {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      font-family:
-        system-ui,
-        -apple-system,
-        sans-serif;
-    }
-
-    .app-layout {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    .header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: white;
-    }
-
-    .logo sl-icon {
-      font-size: 1.5rem;
-    }
-
-    .user-menu {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: white;
-    }
-
-    .user-menu sl-button::part(base) {
-      color: white;
-    }
-
-    .main-layout {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
-
-    .sidebar {
-      width: 250px;
-      background: white;
-      border-right: 1px solid #e5e7eb;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-
-    .nav-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      border-radius: 6px;
-      color: #374151;
-      text-decoration: none;
-      transition: background-color 0.2s;
-      cursor: pointer;
-    }
-
-    .nav-item:hover {
-      background: #f3f4f6;
-    }
-
-    .nav-item.active {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 2rem;
-      overflow-y: auto;
-      background: #f9fafb;
-    }
-
-    .content-wrapper {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .footer {
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 1rem 2rem;
-      text-align: center;
-      color: #6b7280;
-      font-size: 0.875rem;
-    }
-
-    .loading-state {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      gap: 1rem;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        display: none;
-      }
-    }
-  `
-
+export class AppShell extends BasePage {
   constructor() {
     super()
     this.currentView = 'dashboard'
@@ -162,11 +16,8 @@ export class AppShell extends BaseComponent {
   render() {
     if (authState.value.loading) {
       return html`
-        <div class="loading-state">
-          <sl-icon
-            name="arrow-clockwise"
-            style="font-size: 2rem; animation: spin 1s linear infinite;"
-          ></sl-icon>
+        <div class="flex justify-center items-center h-screen gap-4">
+          <wa-icon name="arrow-rotate-right" class="animate-spin text-3xl"></wa-icon>
           <span>Loading...</span>
         </div>
       `
@@ -177,61 +28,72 @@ export class AppShell extends BaseComponent {
     }
 
     return html`
-      <div class="app-layout">
+      <div class="flex flex-col h-screen">
         <!-- Header -->
-        <header class="header">
-          <div class="header-content">
-            <div class="logo">
-              <sl-icon name="speedometer"></sl-icon>
+        <header class="bg-gradient-brand text-white px-8 py-4 shadow-card">
+          <div class="flex justify-between items-center max-w-screen-2xl mx-auto">
+            <div class="flex items-center gap-3 text-xl font-semibold">
+              <wa-icon name="gauge" style="font-size: 1.5rem;"></wa-icon>
               Admin Dashboard
             </div>
-            <div class="user-menu">
-              <span>${authState.value.user?.email}</span>
-              <sl-button variant="text" @click=${this._handleSignOut}>
-                <sl-icon name="box-arrow-right" slot="prefix"></sl-icon>
-                Sign Out
-              </sl-button>
+            <div class="flex items-center gap-4">
+              <span class="text-white">${authState.value.user?.email}</span>
+              <wa-button variant="text" @click=${this._handleSignOut}>
+                <wa-icon name="right-from-bracket" slot="prefix" style="color: white;"></wa-icon>
+                <span style="color: white;">Sign Out</span>
+              </wa-button>
             </div>
           </div>
         </header>
 
         <!-- Main Layout -->
-        <div class="main-layout">
+        <div class="flex flex-1 overflow-hidden">
           <!-- Sidebar -->
-          <aside class="sidebar">
-            <nav class="nav-items">
+          <aside class="w-64 bg-white border-r border-gray-200 p-4 overflow-y-auto md:block hidden">
+            <nav class="flex flex-col gap-2">
               <div
-                class="nav-item ${this.currentView === 'dashboard' ? 'active' : ''}"
+                class="flex items-center gap-3 px-4 py-3 rounded-md cursor-pointer transition-colors ${this
+                  .currentView === 'dashboard'
+                  ? 'bg-blue-100 text-blue-800'
+                  : 'text-gray-700 hover:bg-gray-100'}"
                 @click=${() => this._setView('dashboard')}
               >
-                <sl-icon name="house"></sl-icon>
+                <wa-icon name="house"></wa-icon>
                 Dashboard
               </div>
               <div
-                class="nav-item ${this.currentView === 'users' ? 'active' : ''}"
+                class="flex items-center gap-3 px-4 py-3 rounded-md cursor-pointer transition-colors ${this
+                  .currentView === 'users'
+                  ? 'bg-blue-100 text-blue-800'
+                  : 'text-gray-700 hover:bg-gray-100'}"
                 @click=${() => this._setView('users')}
               >
-                <sl-icon name="people"></sl-icon>
+                <wa-icon name="users"></wa-icon>
                 Users (Coming Soon)
               </div>
               <div
-                class="nav-item ${this.currentView === 'settings' ? 'active' : ''}"
+                class="flex items-center gap-3 px-4 py-3 rounded-md cursor-pointer transition-colors ${this
+                  .currentView === 'settings'
+                  ? 'bg-blue-100 text-blue-800'
+                  : 'text-gray-700 hover:bg-gray-100'}"
                 @click=${() => this._setView('settings')}
               >
-                <sl-icon name="gear"></sl-icon>
+                <wa-icon name="gear"></wa-icon>
                 Settings (Coming Soon)
               </div>
             </nav>
           </aside>
 
           <!-- Main Content -->
-          <main class="main-content">
-            <div class="content-wrapper">${this._renderCurrentView()}</div>
+          <main class="flex-1 p-8 overflow-y-auto bg-gray-50">
+            <div class="max-w-screen-2xl mx-auto">${this._renderCurrentView()}</div>
           </main>
         </div>
 
         <!-- Footer -->
-        <footer class="footer">
+        <footer
+          class="bg-white border-t border-gray-200 px-8 py-4 text-center text-gray-500 text-sm"
+        >
           <p>&copy; 2025 MSB Admin Dashboard. All rights reserved.</p>
         </footer>
       </div>

@@ -6,7 +6,8 @@ A modern admin dashboard built with web standards.
 
 - **Lit** - Web Components framework
 - **@preact/signals-core** - Reactive state management
-- **Shoelace** - UI component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Web Awesome** - UI component library (for form inputs, buttons, and icons)
 - **Supabase** - Authentication and backend
 - **Vite** - Build tool and dev server
 
@@ -76,8 +77,9 @@ The app will be available at [http://localhost:3001](http://localhost:3001)
 - ✅ Basic dashboard with mock data
 - ✅ Responsive layout with sidebar navigation
 - ✅ Signal-based state management
-- ✅ Modern UI with Shoelace components
+- ✅ Modern UI with Tailwind CSS and Shoelace components
 - ✅ Loading states and error handling
+- ✅ Utility-first styling with custom theme
 
 ## Project Structure
 
@@ -88,16 +90,18 @@ packages/admin-app/
 ├── src/
 │   ├── components/
 │   │   ├── base-component.js    # Base component with signal support
-│   │   ├── app-shell.js         # Main app layout
-│   │   ├── login-form.js        # Login interface
-│   │   └── dashboard-page.js    # Dashboard content
+│   │   ├── app-shell.js         # Main app layout (Tailwind)
+│   │   ├── login-form.js        # Login interface (Tailwind)
+│   │   └── dashboard-page.js    # Dashboard content (Tailwind)
 │   ├── lib/
 │   │   └── supabase.js          # Supabase client
 │   ├── store/
 │   │   └── auth-signals.js      # Auth state management
 │   ├── styles/
-│   │   └── globals.css          # Global styles
+│   │   └── globals.css          # Global styles with Tailwind directives
 │   └── main.js                  # App entry point
+├── tailwind.config.js           # Tailwind CSS configuration
+├── postcss.config.js            # PostCSS configuration
 ├── package.json
 ├── vite.config.js
 └── README.md
@@ -129,11 +133,91 @@ packages/admin-app/
 
 ### Component Architecture
 
-All components extend `BaseComponent` which provides:
+This project uses a **hybrid Shadow DOM + Light DOM architecture** for optimal
+encapsulation and styling flexibility:
+
+**BaseComponent** (Shadow DOM - Default)
+
+- For reusable UI components that need encapsulation
+- Extends `LitElement` with Shadow DOM enabled
+- Can use Tailwind via imported stylesheet (`tailwindStylesheet`)
+- Example: `dashboard-page`, custom widgets, cards
+
+**BasePage** (Light DOM - For Tailwind)
+
+- For page-level and layout components
+- Disables Shadow DOM to enable full Tailwind CSS support
+- Use for: routes, layouts, pages
+- Example: `app-shell`, `login-form`
+
+Both base classes provide:
 
 - Automatic signal subscription management
 - Cleanup on component disconnect
 - Standard Lit element lifecycle
+
+### Styling with Tailwind CSS
+
+This project uses **Tailwind CSS v3** for utility-first styling:
+
+- **Custom Theme**: Configured in `tailwind.config.js` with brand colors
+  matching the original design
+  - Purple gradient: `bg-gradient-brand` (#667eea to #764ba2)
+  - Custom color palettes: `primary`, `success`, `warning`, `danger`, `info`
+  - Brand colors: `brand-purple`, `brand-indigo`
+- **Responsive Design**: Built-in breakpoints (`sm:`, `md:`, `lg:`, etc.)
+- **Web Awesome Integration**: Tailwind handles layout/utilities, Web Awesome
+  provides accessible form components and icons
+- **Production Optimization**: Tailwind automatically purges unused styles in
+  production builds
+
+**Example usage**:
+
+Light DOM (BasePage):
+
+```js
+import { html } from 'lit'
+import { BasePage } from './base-page.js'
+
+export class MyPage extends BasePage {
+  render() {
+    return html`
+      <div class="bg-gradient-brand p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white border-l-4 border-success-500 p-6">Card</div>
+        </div>
+      </div>
+    `
+  }
+}
+```
+
+Shadow DOM (BaseComponent):
+
+```js
+import { html, css } from 'lit'
+import { BaseComponent } from './base-component.js'
+import { tailwindStylesheet } from '../styles/tailwind-shadow.js'
+
+export class MyComponent extends BaseComponent {
+  static styles = [
+    tailwindStylesheet,
+    css`
+      :host {
+        display: block;
+      }
+    `,
+  ]
+
+  render() {
+    return html`
+      <div class="bg-white p-6 rounded-lg shadow-card">
+        <!-- Tailwind classes work in Shadow DOM too -->
+      </div>
+    `
+  }
+}
+```
 
 ### State Management
 
@@ -172,10 +256,11 @@ server: {
 
 ### Icons not loading
 
-Icons are loaded from CDN. If you see icon loading errors:
+Icons are loaded from Web Awesome CDN. If you see icon loading errors:
 
 - Check your internet connection
-- The CDN path is set in `src/main.js` using `setBasePath()`
+- The CDN script is loaded in `index.html`
+- Verify the Web Awesome CDN is accessible
 
 ## License
 

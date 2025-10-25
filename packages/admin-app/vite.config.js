@@ -7,7 +7,7 @@ export default defineConfig({
     outDir: 'dist',
   },
   optimizeDeps: {
-    include: ['@preact/signals-core', 'lit', '@supabase/supabase-js', '@shoelace-style/shoelace'],
+    include: ['@preact/signals-core', 'lit', '@supabase/supabase-js'],
   },
   server: {
     port: 3001,
