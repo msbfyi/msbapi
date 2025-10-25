@@ -2,10 +2,6 @@ import { html } from 'lit'
 import { BasePage } from './base-page.js'
 import { authState, isAuthenticated, authService } from '../store/auth-signals.js'
 
-// Import Shoelace components
-import '@shoelace-style/shoelace/dist/components/button/button.js'
-import '@shoelace-style/shoelace/dist/components/icon/icon.js'
-
 export class AppShell extends BasePage {
   constructor() {
     super()
@@ -21,7 +17,7 @@ export class AppShell extends BasePage {
     if (authState.value.loading) {
       return html`
         <div class="flex justify-center items-center h-screen gap-4">
-          <sl-icon name="arrow-clockwise" class="animate-spin text-3xl"></sl-icon>
+          <wa-icon name="arrow-rotate-right" class="animate-spin text-3xl"></wa-icon>
           <span>Loading...</span>
         </div>
       `
@@ -37,15 +33,15 @@ export class AppShell extends BasePage {
         <header class="bg-gradient-brand text-white px-8 py-4 shadow-card">
           <div class="flex justify-between items-center max-w-screen-2xl mx-auto">
             <div class="flex items-center gap-3 text-xl font-semibold">
-              <sl-icon name="speedometer" style="font-size: 1.5rem;"></sl-icon>
+              <wa-icon name="gauge" style="font-size: 1.5rem;"></wa-icon>
               Admin Dashboard
             </div>
             <div class="flex items-center gap-4">
               <span class="text-white">${authState.value.user?.email}</span>
-              <sl-button variant="text" @click=${this._handleSignOut}>
-                <sl-icon name="box-arrow-right" slot="prefix" style="color: white;"></sl-icon>
+              <wa-button variant="text" @click=${this._handleSignOut}>
+                <wa-icon name="right-from-bracket" slot="prefix" style="color: white;"></wa-icon>
                 <span style="color: white;">Sign Out</span>
-              </sl-button>
+              </wa-button>
             </div>
           </div>
         </header>
@@ -62,7 +58,7 @@ export class AppShell extends BasePage {
                   : 'text-gray-700 hover:bg-gray-100'}"
                 @click=${() => this._setView('dashboard')}
               >
-                <sl-icon name="house"></sl-icon>
+                <wa-icon name="house"></wa-icon>
                 Dashboard
               </div>
               <div
@@ -72,7 +68,7 @@ export class AppShell extends BasePage {
                   : 'text-gray-700 hover:bg-gray-100'}"
                 @click=${() => this._setView('users')}
               >
-                <sl-icon name="people"></sl-icon>
+                <wa-icon name="users"></wa-icon>
                 Users (Coming Soon)
               </div>
               <div
@@ -82,7 +78,7 @@ export class AppShell extends BasePage {
                   : 'text-gray-700 hover:bg-gray-100'}"
                 @click=${() => this._setView('settings')}
               >
-                <sl-icon name="gear"></sl-icon>
+                <wa-icon name="gear"></wa-icon>
                 Settings (Coming Soon)
               </div>
             </nav>

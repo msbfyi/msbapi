@@ -2,11 +2,6 @@ import { html } from 'lit'
 import { BasePage } from './base-page.js'
 import { authState, authService } from '../store/auth-signals.js'
 
-// Import Shoelace components
-import '@shoelace-style/shoelace/dist/components/button/button.js'
-import '@shoelace-style/shoelace/dist/components/input/input.js'
-import '@shoelace-style/shoelace/dist/components/icon/icon.js'
-
 export class LoginForm extends BasePage {
   setupSubscriptions() {
     this.subscribe(authState)
@@ -22,7 +17,7 @@ export class LoginForm extends BasePage {
             <div
               class="w-16 h-16 mx-auto mb-4 bg-gradient-brand rounded-xl flex items-center justify-center"
             >
-              <sl-icon name="speedometer" style="font-size: 2rem; color: white;"></sl-icon>
+              <wa-icon name="gauge" style="font-size: 2rem; color: white;"></wa-icon>
             </div>
             <h1 class="text-2xl font-semibold text-gray-900 mb-2">Admin Dashboard</h1>
             <p class="text-gray-600">Sign in to your account</p>
@@ -39,36 +34,34 @@ export class LoginForm extends BasePage {
 
             <div class="flex flex-col gap-2">
               <label for="email" class="font-medium text-gray-700 text-sm">Email address</label>
-              <sl-input
+              <wa-input
                 id="email"
                 name="email"
                 type="email"
                 required
                 ?disabled=${loading}
                 placeholder="Enter your email"
-                style="--border-radius: 8px;"
               >
-                <sl-icon name="envelope" slot="prefix"></sl-icon>
-              </sl-input>
+                <wa-icon name="envelope" slot="prefix"></wa-icon>
+              </wa-input>
             </div>
 
             <div class="flex flex-col gap-2">
               <label for="password" class="font-medium text-gray-700 text-sm">Password</label>
-              <sl-input
+              <wa-input
                 id="password"
                 name="password"
                 type="password"
                 required
                 ?disabled=${loading}
                 placeholder="Enter your password"
-                style="--border-radius: 8px;"
               >
-                <sl-icon name="lock" slot="prefix"></sl-icon>
-              </sl-input>
+                <wa-icon name="lock" slot="prefix"></wa-icon>
+              </wa-input>
             </div>
 
             <div class="flex flex-col gap-4 mt-4">
-              <sl-button
+              <wa-button
                 type="submit"
                 variant="primary"
                 size="large"
@@ -78,12 +71,12 @@ export class LoginForm extends BasePage {
                 ${loading
                   ? html`
                       <div class="flex items-center justify-center gap-2">
-                        <sl-icon name="arrow-clockwise" class="animate-spin"></sl-icon>
+                        <wa-icon name="arrow-rotate-right" class="animate-spin"></wa-icon>
                         Signing in...
                       </div>
                     `
                   : 'Sign In'}
-              </sl-button>
+              </wa-button>
 
               <div class="text-center">
                 <a

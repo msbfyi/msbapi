@@ -1,12 +1,7 @@
-// Import Shoelace theme and icons
-import '@shoelace-style/shoelace/dist/themes/light.css'
-import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js'
-
-// Set the base path for Shoelace assets
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/')
-
 // Import global styles
 import './styles/globals.css'
+
+// Web Awesome will be loaded via CDN in index.html
 
 // Import all components
 import './components/base-component.js'

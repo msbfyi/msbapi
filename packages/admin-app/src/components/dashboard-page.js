@@ -1,7 +1,6 @@
 import { html, css } from 'lit'
 import { BaseComponent } from './base-component.js'
 import { authState } from '../store/auth-signals.js'
-import '@shoelace-style/shoelace/dist/components/icon/icon.js'
 import { tailwindStylesheet } from '../styles/tailwind-shadow.js'
 
 export class DashboardPage extends BaseComponent {
@@ -48,7 +47,7 @@ export class DashboardPage extends BaseComponent {
         <h2 class="text-xl font-semibold text-gray-900 mb-4">Recent Activity</h2>
         <div class="py-4 border-b border-gray-200 flex items-center gap-4">
           <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-            <sl-icon name="person-plus"></sl-icon>
+            <wa-icon name="user-plus"></wa-icon>
           </div>
           <div class="flex-1">
             <p class="font-medium text-gray-900 mb-1">New user registered</p>
@@ -57,7 +56,7 @@ export class DashboardPage extends BaseComponent {
         </div>
         <div class="py-4 border-b border-gray-200 flex items-center gap-4">
           <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-            <sl-icon name="gear"></sl-icon>
+            <wa-icon name="gear"></wa-icon>
           </div>
           <div class="flex-1">
             <p class="font-medium text-gray-900 mb-1">System configuration updated</p>
@@ -66,7 +65,7 @@ export class DashboardPage extends BaseComponent {
         </div>
         <div class="py-4 flex items-center gap-4">
           <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-            <sl-icon name="bell"></sl-icon>
+            <wa-icon name="bell"></wa-icon>
           </div>
           <div class="flex-1">
             <p class="font-medium text-gray-900 mb-1">New notification sent</p>

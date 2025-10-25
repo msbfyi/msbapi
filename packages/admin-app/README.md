@@ -7,7 +7,7 @@ A modern admin dashboard built with web standards.
 - **Lit** - Web Components framework
 - **@preact/signals-core** - Reactive state management
 - **Tailwind CSS** - Utility-first CSS framework
-- **Shoelace** - UI component library (for form inputs and buttons)
+- **Web Awesome** - UI component library (for form inputs, buttons, and icons)
 - **Supabase** - Authentication and backend
 - **Vite** - Build tool and dev server
 
@@ -166,8 +166,8 @@ This project uses **Tailwind CSS v3** for utility-first styling:
   - Custom color palettes: `primary`, `success`, `warning`, `danger`, `info`
   - Brand colors: `brand-purple`, `brand-indigo`
 - **Responsive Design**: Built-in breakpoints (`sm:`, `md:`, `lg:`, etc.)
-- **Shoelace Integration**: Tailwind handles layout/utilities, Shoelace provides
-  accessible form components
+- **Web Awesome Integration**: Tailwind handles layout/utilities, Web Awesome
+  provides accessible form components and icons
 - **Production Optimization**: Tailwind automatically purges unused styles in
   production builds
 
@@ -256,10 +256,11 @@ server: {
 
 ### Icons not loading
 
-Icons are loaded from CDN. If you see icon loading errors:
+Icons are loaded from Web Awesome CDN. If you see icon loading errors:
 
 - Check your internet connection
-- The CDN path is set in `src/main.js` using `setBasePath()`
+- The CDN script is loaded in `index.html`
+- Verify the Web Awesome CDN is accessible
 
 ## License
 
